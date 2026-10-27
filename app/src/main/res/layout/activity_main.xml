@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="16dp">
+
+    <!-- Image Preview -->
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:scaleType="centerInside"
+        android:background="#E0E0E0"
+        android:contentDescription="Scanned Image Preview" />
+
+    <!-- Button to Capture/Pick Image -->
+    <Button
+        android:id="@+id/btnCapture"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Select Image / Capture" />
+
+    <!-- Extracted Text Display -->
+    <TextView
+        android:id="@+id/tvExtractedText"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginTop="20dp"
+        android:text="Extracted text will appear here..."
+        android:textSize="16sp"
+        android:textColor="@android:color/black"
+        android:scrollbars="vertical" />
+
+</LinearLayout>
