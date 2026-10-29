@@ -1,15 +1,10 @@
 package com.example.textscan
 
 import android.Manifest
-
-
-
-
-
-
-
-
 import android.app.Dialog
+import android.content.ClipData
+import android.content.ClipboardManager
+import android.content.Context
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
@@ -52,10 +47,19 @@ class MainActivity : AppCompatActivity() {
         dialog.setContentView(R.layout.dialog_result)
 
         val tvResult = dialog.findViewById<TextView>(R.id.tvScannedResult)
+        val btnCopy = dialog.findViewById<Button?>(R.id.btnCopyText)
         val btnClose = dialog.findViewById<Button?>(R.id.btnCloseDialog)
         val btnHeaderClose = dialog.findViewById<Button?>(R.id.btnHeaderClose)
 
-        tvResult.text = if (scannedText.isNotBlank()) scannedText else "No text found in this image."
+        val resultText = if (scannedText.isNotBlank()) scannedText else "No text found in this image."
+        tvResult.text = resultText
+
+        btnCopy?.setOnClickListener {
+            val clipboard = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+            val clip = ClipData.newPlainText("Scanned OCR Text", resultText)
+            clipboard.setPrimaryClip(clip)
+            Toast.makeText(this, "Text copied to clipboard!", Toast.LENGTH_SHORT).show()
+        }
 
         btnClose?.setOnClickListener {
             dialog.dismiss()
